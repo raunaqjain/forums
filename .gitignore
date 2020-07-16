@@ -20,3 +20,5 @@ db.sqlite3
 .idea/**/libraries 
 *.iws /out/ 
 
+.vscode/
+
