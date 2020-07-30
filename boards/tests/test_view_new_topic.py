@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
-from ..views import home, new_topic
+from ..views import new_topic
 from ..models import Board, Topic, Post
 from django.contrib.auth.models import User
 from ..forms import NewTopicForm

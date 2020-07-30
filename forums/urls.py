@@ -21,7 +21,7 @@ from boards import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path(r'', views.home, name='home'),
+    path(r'', views.BoardListView.as_view(), name='home'),
     path(r'signup/', accounts_views.signup, name='signup'),
     path(r'login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path(r'logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -47,10 +47,11 @@ urlpatterns = [
     path(r'settings/password/done/', 
         auth_views.PasswordChangeDoneView.as_view(template_name='password_change_done.html'),
         name='password_change_done'),
-    path(r'boards/<int:pk>/topic/<int:topic_pk>/', views.topic_posts, name='topic_posts'),
+    path(r'boards/<int:pk>/topic/<int:topic_pk>/', views.PostListView.as_view(), name='topic_posts'),
     path(r'boards/<int:pk>/topic/<int:topic_pk>/reply/', views.reply_topic, name='reply_topic'),
-    path(r'boards/<int:pk>/topic/<int:topic_pk>/posts/<int:edit_pk>/edit/', views.PostUpdateView.as_view(), name='edit_post'),
-    path(r'boards/<int:pk>/', views.board_topics, name='board_topics'),
+    path(r'boards/<int:pk>/topic/<int:topic_pk>/posts/<int:post_pk>/edit/', views.PostUpdateView.as_view(), name='edit_post'),
+    path(r'boards/<int:pk>/', views.TopicListView.as_view(), name='board_topics'),
     path(r'boards/<int:pk>/new/', views.new_topic, name='new_topic'),
+    path(r'settings/account/', views.UserUpdateView.as_view(), name='my_account'),
     path(r'admin/', admin.site.urls),
 ]
